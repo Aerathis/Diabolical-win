@@ -17,6 +17,55 @@ BOOL				InitInstance(HINSTANCE, int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 
+
+// Converts VK's to DK's
+input::s_DEvent translateKeyEvent(UINT key)
+{
+	input::s_DEvent result;
+	result.type = input::e_keyEvent;
+	switch(key)
+	{
+	case 0x43:
+		result.key = DKeysym::DK_Key_c;
+		break;
+	case 0x50:
+		result.key = DKeysym::DK_Key_p;
+		break;
+	case 0x53:
+		result.key = DKeysym::DK_Key_s;
+		break;
+	case 0x31:
+		result.key = DKeysym::DK_Key_1;
+		break;
+	case 0x32:
+		result.key = DKeysym::DK_Key_2;
+		break;
+	case 0x57:
+		result.key = DKeysym::DK_Key_w;
+		break;
+	case 0x54:
+		result.key = DKeysym::DK_Key_t;
+		break;
+	case 0x4D:
+		result.key = DKeysym::DK_Key_m;
+		break;
+	case 0x52:
+		result.key = DKeysym::DK_Key_r;
+		break;
+	case 0x4F:
+		result.key = DKeysym::DK_Key_o;
+		break;
+	case 0x46:
+		result.key = DKeysym::DK_Key_f;
+		break;
+	case 0x47:
+		result.key = DKeysym::DK_Key_g;
+		break;
+	}
+	return result;
+}
+
+
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
                      LPTSTR    lpCmdLine,
@@ -42,7 +91,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 	hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_DIABOLICALWIN));
 
-  application.onInit();
+  if (!application.onInit())
+		return -1;
 
   PeekMessage(&msg,NULL,0,0,PM_NOREMOVE);
 
@@ -56,6 +106,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     }
     else
     {
+			application.onExecute();
     }
 	}
 
@@ -160,6 +211,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		default:
 			return DefWindowProc(hWnd, message, wParam, lParam);
+		}
+		break;
+	case WM_KEYDOWN:
+		if (wParam == VK_ESCAPE)
+			PostQuitMessage(0);
+		else 
+		{
+			application.addEvent(translateKeyEvent(wParam));
 		}
 		break;
 	case WM_PAINT:

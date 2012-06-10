@@ -5,5 +5,4 @@
 
 void Renderer::renderTest()
 {
- 
 }

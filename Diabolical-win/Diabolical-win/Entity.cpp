@@ -16,8 +16,8 @@ void Entity::initEntity(int inX, int inY, int inId, std::string inName)
 {
   vitals.x = inX;
   vitals.y = inY;
-  targetPos.x = inX;
-  targetPos.y = inY;
+  targetPos.x = (float)inX;
+  targetPos.y = (float)inY;
   target = NULL;
   vitals.id = inId;
   vitals.timeAlive = 0;
@@ -42,151 +42,151 @@ void Entity::initEntity(int inX, int inY, int inId, std::string inName)
 void Entity::processDecision(e_brainState decision, World* host, s_frameResolution* resPointer)
 {
   switch (decision)
+  {
+  case e_idle:
+    break;
+  case e_getFood:
     {
-    case e_idle:
-      break;
-    case e_getFood:
-      {
-	Object* targetObj = 0;
-	float closeDist = 100000000000;
-	std::vector<Object>::iterator it;
-	for (it = host->getObjectList()->begin(); it != host->getObjectList()->end(); ++it)
-	  {	    
-	    Object tempObj = *it;
-	    if (tempObj.pollObject() == Object::e_food)
+			Object* targetObj = 0;
+			float closeDist = (float)100000000000;
+			std::vector<Object>::iterator it;
+			for (it = host->getObjectList()->begin(); it != host->getObjectList()->end(); ++it)
+			{	    
+				Object tempObj = *it;
+				if (tempObj.pollObject() == Object::e_food)
 	      {	      
-		float diffX = abs(tempObj.getObjVitals().x - vitals.x);
-		float diffY = abs(tempObj.getObjVitals().y - vitals.y);
-		float len = sqrt(diffX*diffX+diffY*diffY);
-		if (len < closeDist)
-		  {
-		    closeDist = len;
-		    targetObj = &*it;
-		  }
+					float diffX = (float)abs(tempObj.getObjVitals().x - vitals.x);
+					float diffY = (float)abs(tempObj.getObjVitals().y - vitals.y);
+					float len = sqrt(diffX*diffX+diffY*diffY);
+					if (len < closeDist)
+					{	
+						closeDist = len;
+						targetObj = &*it;
+					}
 	      }
-	    if (targetObj)
+				if (targetObj)
 	      {
-		resPointer->resultState = e_eatFood;
-		resPointer->target = (void*)targetObj;
+					resPointer->resultState = e_eatFood;
+					resPointer->target = (void*)targetObj;
+				}
+			}
+		}
+		break;
+  case e_getWater:
+    {
+			int terSize = host->im_getTerrainMap()->getMapSize();
+			int iterCount = 0;
+			bool targetPicked = false;
+			while (!targetPicked)
+			{
+				for (int i = iterCount*(-1); i <= iterCount; i++)
+				{
+					// There's a bug in here with at least one of the getLocationAtCoord params	  
+					int y = vitals.y - iterCount;
+					y = (y >= 0 ? y : 0);
+					int x = vitals.x + i;
+					x = (x >= 0 ? x : 0);
+					x = (x < terSize ? x : terSize-1);
+					creators::e_terrainType terr = host->im_getTerrainMap()->getLocationAtCoord(x,y);
+					if (terr == creators::e_shallowWater || terr == creators::e_water)
+					{
+						targetPicked = true;
+						s_position* targPos = new s_position();
+						targPos->x = (float)x;
+						targPos->y = (float)y;
+						resPointer->target = (void*)targPos;
+					}
+					y = vitals.y + iterCount;
+					y = (y < terSize ? y : terSize-1);
+					terr = host->im_getTerrainMap()->getLocationAtCoord(x,y);
+					if (terr == creators::e_shallowWater || terr == creators::e_water)
+					{
+						targetPicked = true;
+						s_position* targPos = new s_position();
+						targPos->x = (float)x;
+						targPos->y = (float)y;
+						resPointer->target = (void*)targPos;
+					}
+					x = vitals.x - iterCount;
+					x = (x >= 0 ? x : 0);
+					y = vitals.y + i;
+					y = (y >= 0 ? y : 0);
+					y = (y < terSize ? y : terSize-1);
+					terr = host->im_getTerrainMap()->getLocationAtCoord(x,y);
+					if (terr == creators::e_shallowWater || terr == creators::e_water)
+					{
+						targetPicked = true;
+						s_position* targPos = new s_position();
+						targPos->x = (float)x;
+						targPos->y = (float)y;
+						resPointer->target = (void*)targPos;
+					}
+					x = vitals.x + iterCount;
+					x = (x < terSize ? x : terSize-1);
+					terr = host->im_getTerrainMap()->getLocationAtCoord(x,y);
+					if (terr == creators::e_shallowWater || terr == creators::e_water)
+					{
+						targetPicked = true;
+						s_position* targPos = new s_position();
+						targPos->x = (float)x;
+						targPos->y = (float)y;
+						resPointer->target = (void*)targPos;
+					}
 	      }
-	  }
-      }
-      break;
-    case e_getWater:
-      {
-	int terSize = host->im_getTerrainMap()->getMapSize();
-	int iterCount = 0;
-	bool targetPicked = false;
-	while (!targetPicked)
-	  {
-	    for (int i = iterCount*(-1); i <= iterCount; i++)
-	      {
-		// There's a bug in here with at least one of the getLocationAtCoord params	  
-		int y = vitals.y - iterCount;
-		y = (y >= 0 ? y : 0);
-		int x = vitals.x + i;
-		x = (x >= 0 ? x : 0);
-		x = (x < terSize ? x : terSize-1);
-		creators::e_terrainType terr = host->im_getTerrainMap()->getLocationAtCoord(x,y);
-		if (terr == creators::e_shallowWater || terr == creators::e_water)
-		  {
-		    targetPicked = true;
-		    s_position* targPos = new s_position();
-		    targPos->x = x;
-		    targPos->y = y;
-		    resPointer->target = (void*)targPos;
-		  }
-		y = vitals.y + iterCount;
-		y = (y < terSize ? y : terSize-1);
-		terr = host->im_getTerrainMap()->getLocationAtCoord(x,y);
-		if (terr == creators::e_shallowWater || terr == creators::e_water)
-		  {
-		    targetPicked = true;
-		    s_position* targPos = new s_position();
-		    targPos->x = x;
-		    targPos->y = y;
-		    resPointer->target = (void*)targPos;
-		  }
-		x = vitals.x - iterCount;
-		x = (x >= 0 ? x : 0);
-		y = vitals.y + i;
-		y = (y >= 0 ? y : 0);
-		y = (y < terSize ? y : terSize-1);
-		terr = host->im_getTerrainMap()->getLocationAtCoord(x,y);
-		if (terr == creators::e_shallowWater || terr == creators::e_water)
-		  {
-		    targetPicked = true;
-		    s_position* targPos = new s_position();
-		    targPos->x = x;
-		    targPos->y = y;
-		    resPointer->target = (void*)targPos;
-		  }
-		x = vitals.x + iterCount;
-		x = (x < terSize ? x : terSize-1);
-		terr = host->im_getTerrainMap()->getLocationAtCoord(x,y);
-		if (terr == creators::e_shallowWater || terr == creators::e_water)
-		  {
-		    targetPicked = true;
-		    s_position* targPos = new s_position();
-		    targPos->x = x;
-		    targPos->y = y;
-		    resPointer->target = (void*)targPos;
-		  }
-	      }
-	    iterCount++;
-	  }
-	resPointer->resultState = e_drinkWater;
-      }
-      break;
-    case e_takeNap:
-      {
-	resPointer->resultState = e_nap;
-	resPointer->target = NULL;
-      }
-      break;
-    case e_buildStuff:
-      {
-	std::vector<Structure>* structList = host->getStructureList();
-	if (structList->size() > 0)
-	  {
-	    std::vector<Structure>::iterator structIt;
-	    for (structIt = structList->begin(); structIt != structList->end(); ++structIt)
-	      {
-		if (structIt->canStartWork() || structIt->isUnderConstruction())
-		  {
-		    resPointer->resultState = e_buildStructure;
-		    resPointer->target = (void*)&*structIt;
-		  }		
-	      }
-	  }
-	else
-	  {
-	    resPointer->resultState = e_idleFrame;
-	    resPointer->target = NULL;
-	  }
-      }
-      break;
-    case e_makeHome:
-      {       
-	resPointer->resultState = e_buildNewHome;
-	resPointer->target = NULL;
-      }
-      break;
-    case e_buildHome:
-      {
-	if (home->needsMats())
-	  {	   
-	    resPointer->resultState = e_collectStuff;
-	    resPointer->target = (void*)home;
-	  }
-	else
-	  {
-	    resPointer->resultState = e_buildStructure;
-	    resPointer->target = (void*)home;
-	  }
-      }
-      break;
+				iterCount++;
+			}
+			resPointer->resultState = e_drinkWater;
     }
+    break;
+  case e_takeNap:
+    {
+			resPointer->resultState = e_nap;
+			resPointer->target = NULL;
+    }
+    break;
+  case e_buildStuff:
+    {
+			std::vector<Structure>* structList = host->getStructureList();
+			if (structList->size() > 0)
+			{
+				std::vector<Structure>::iterator structIt;
+				for (structIt = structList->begin(); structIt != structList->end(); ++structIt)
+				{
+					if (structIt->canStartWork() || structIt->isUnderConstruction())
+					{
+						resPointer->resultState = e_buildStructure;
+						resPointer->target = (void*)&*structIt;
+					}		
+	      }
+			}
+			else
+			{
+				resPointer->resultState = e_idleFrame;
+				resPointer->target = NULL;
+			}
+    }
+    break;
+  case e_makeHome:
+    {       
+			resPointer->resultState = e_buildNewHome;
+			resPointer->target = NULL;
+    }
+    break;
+  case e_buildHome:
+    {
+			if (home->needsMats())
+			{	   
+				resPointer->resultState = e_collectStuff;
+				resPointer->target = (void*)home;
+			}
+			else
+			{
+				resPointer->resultState = e_buildStructure;
+				resPointer->target = (void*)home;
+			}
+    }
+    break;
+  }
 }
 
 void Entity::resolveFrame(s_frameResolution* resultState, World* host)
@@ -561,8 +561,8 @@ void Entity::moveToTargetLocation(float x, float y)
 
 void Entity::moveToTargetLocation(int x, int y)
 {
-  targetPos.x = x;
-  targetPos.y = y;
+  targetPos.x = (float)x;
+  targetPos.y = (float)y;
 }
 
 void Entity::moveToTarget(Entity* targ)
@@ -607,14 +607,14 @@ Entity::s_position Entity::findNearestObjectOfType(World* host, Object::e_object
       Object obj = *it;
       if (obj.pollObject() == checkType)
 	{
-	  float diffX = abs(obj.getObjVitals().x - vitals.x);
-	  float diffY = abs(obj.getObjVitals().y - vitals.y);
+	  float diffX = (float)abs(obj.getObjVitals().x - vitals.x);
+	  float diffY = (float)abs(obj.getObjVitals().y - vitals.y);
 	  float len = sqrt(diffX*diffX+diffY*diffY);
 	  if (len < nearDist)
 	    {
 	      nearDist = len;
-	      temp.x = obj.getObjVitals().x;
-	      temp.y = obj.getObjVitals().y;
+	      temp.x = (float)obj.getObjVitals().x;
+	      temp.y = (float)obj.getObjVitals().y;
 	    }
 	}
     }
