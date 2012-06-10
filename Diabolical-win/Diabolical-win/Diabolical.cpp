@@ -34,7 +34,7 @@ bool Diabolical::onEvent(Event event)
 
 void Diabolical::onRender()
 {
-  renderer.renderTest();
+  renderer.testRender();
 }
 
 void Diabolical::onExecute()
@@ -46,4 +46,9 @@ void Diabolical::onExecute()
     }
   onLoop();
   onRender();
+}
+
+Renderer* Diabolical::getRenderer()
+{
+  return &renderer;
 }

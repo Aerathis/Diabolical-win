@@ -7,7 +7,7 @@
 #define MAX_LOADSTRING 100
 
 // Global Variables:
-HINSTANCE hInst;								// current instance
+HINSTANCE hInst; // current instance
 TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
 
@@ -74,6 +74,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
+  if(!application.onInit())
+    return -1;
+
  	// TODO: Place code here.
 	MSG msg;
 	HACCEL hAccelTable;
@@ -90,9 +93,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	}
 
 	hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_DIABOLICALWIN));
-
-  if (!application.onInit())
-		return -1;
 
   PeekMessage(&msg,NULL,0,0,PM_NOREMOVE);
 
@@ -168,6 +168,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInstance, NULL);
 
+   application.getRenderer()->init(hWnd);
+
    if (!hWnd)
    {
       return FALSE;
@@ -192,8 +194,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	int wmId, wmEvent;
-	PAINTSTRUCT ps;
-	HDC hdc;
 
 	switch (message)
 	{
@@ -221,12 +221,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			application.addEvent(translateKeyEvent(wParam));
 		}
 		break;
-	case WM_PAINT:
-		hdc = BeginPaint(hWnd, &ps);
-		// TODO: Add any drawing code here...
-		EndPaint(hWnd, &ps);
-		break;
 	case WM_DESTROY:
+    application.getRenderer()->purge();
 		PostQuitMessage(0);
 		break;
 	default:
