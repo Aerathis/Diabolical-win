@@ -124,6 +124,19 @@ namespace creators
     return true;
   }
 
+  bool fillPrecipitation(Map<float>* precipMap)
+  {
+    int mapSize = precipMap->getMapSize();
+    for (int y = 0; y < mapSize; y++)
+    {
+      for (int x = 0; x < mapSize; x++)
+      {
+        precipMap->setLocationAtCoord(x,y,0);
+      }
+    }
+    return true;
+  }
+
   // Simple fill function - checks for magic height values and fills the typeMap with the 
   // Corresponding enum value
   bool fillTerrainDetails(Map<e_terrainType>* terrainMap, Map<double>* worldMap)

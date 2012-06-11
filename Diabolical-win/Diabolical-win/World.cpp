@@ -122,13 +122,12 @@ void World::runFrameWithInput(Event* Event)
 	    {
 	      worldMap.setSize(20);
 	      terrainMap.setSize(20);
-	      worldWeather.setWeatherMapSize(20);
 	      creators::fillTerrain(&worldMap);
 	      std::cout << std::endl;
 	      creators::fillTerrainDetails(&terrainMap, &worldMap);
 	      std::cout << std::endl;
 	      creators::placeResources(&objects, &terrainMap);
-	      creators::fillWeather(worldWeather.getWeatherMap());	      
+        worldWeather.initWeather(this);
 	      worldCreated = true;
 	    }
 	  else if(worldCreated)

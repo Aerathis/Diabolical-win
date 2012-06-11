@@ -25,6 +25,8 @@ namespace creators
 
   bool fillWeather(Map<int>* weatherMap);
 
+  bool fillPrecipitation(Map<float>* precipMap);
+
   bool fillTerrainDetails(Map<e_terrainType>* terrainMap, Map<double>* worldMap);
 
   bool placeResources(std::vector<Object>* objects, Map<e_terrainType>* terrainMap);
