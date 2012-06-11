@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Brain.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Creators.h" />
     <ClInclude Include="Diabolical-win.h" />
     <ClInclude Include="Diabolical.h" />
@@ -99,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Brain.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Creators.cpp" />
     <ClCompile Include="Diabolical-win.cpp" />
     <ClCompile Include="Diabolical.cpp" />
