@@ -6,16 +6,9 @@
 
 class Renderer
 {
-private:
-  HWND m_hWnd;
-  HDC hDC;
-  HGLRC hRC;
-
-  void reset();
 
 public:
-  void init(HWND hWnd);
-  void purge();
+	void initRenderer();
   void testRender();
 };
 

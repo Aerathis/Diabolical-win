@@ -7,7 +7,10 @@
 #define MAX_LOADSTRING 100
 
 // Global Variables:
-HINSTANCE hInst; // current instance
+HINSTANCE hInst; 
+HWND hWnd;
+HDC hDC;
+HGLRC hRC;// current instance
 TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
 
@@ -16,6 +19,9 @@ ATOM				MyRegisterClass(HINSTANCE hInstance);
 BOOL				InitInstance(HINSTANCE, int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
+void EnableOpenGL(HWND hWnd, HDC* hDC, HGLRC* hRC);
+void DisableOpenGL(HWND hWnd, HDC hDC, HGLRC hRC);
+
 
 
 // Converts VK's to DK's
@@ -107,6 +113,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     else
     {
 			application.onExecute();
+			SwapBuffers(hDC);
     }
 	}
 
@@ -168,7 +175,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInstance, NULL);
 
-   application.getRenderer()->init(hWnd);
+   EnableOpenGL(hWnd,&hDC,&hRC);
 
    if (!hWnd)
    {
@@ -222,7 +229,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 	case WM_DESTROY:
-    application.getRenderer()->purge();
+    DisableOpenGL(hWnd,hDC,hRC);
 		PostQuitMessage(0);
 		break;
 	default:
@@ -249,4 +256,36 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	}
 	return (INT_PTR)FALSE;
+}
+
+void EnableOpenGL(HWND hWnd, HDC* hDC, HGLRC* hRC)
+{
+	PIXELFORMATDESCRIPTOR pfd;
+	int format;
+	
+	// get the device context (DC)
+	*hDC = GetDC( hWnd );
+	
+	// set the pixel format for the DC
+	ZeroMemory( &pfd, sizeof( pfd ) );
+	pfd.nSize = sizeof( pfd );
+	pfd.nVersion = 1;
+	pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+	pfd.iPixelType = PFD_TYPE_RGBA;
+	pfd.cColorBits = 24;
+	pfd.cDepthBits = 16;
+	pfd.iLayerType = PFD_MAIN_PLANE;
+	format = ChoosePixelFormat( *hDC, &pfd );
+	SetPixelFormat( *hDC, format, &pfd );
+	
+	// create and enable the render context (RC)
+	*hRC = wglCreateContext( *hDC );
+	wglMakeCurrent( *hDC, *hRC );
+}
+
+void DisableOpenGL(HWND hWnd, HDC hDC, HGLRC hRC)
+{
+	wglMakeCurrent( NULL, NULL );
+	wglDeleteContext( hRC );
+	ReleaseDC( hWnd, hDC );
 }
