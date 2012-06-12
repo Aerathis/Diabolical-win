@@ -87,6 +87,12 @@
     <ClInclude Include="glext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="glew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wglew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -139,5 +145,8 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="OpenGL32.Lib" />
+    <Library Include="glew32.lib" />
+    <Library Include="glew32mx.lib" />
+    <Library Include="glew32mxs.lib" />
   </ItemGroup>
 </Project>

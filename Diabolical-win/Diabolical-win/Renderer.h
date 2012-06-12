@@ -1,19 +1,13 @@
 #ifndef _RENDERER_H
 #define _RENDERER_H
 
-#include <gl/GL.h>
-#include <gl/GLU.h>
+#include "glew.h"
 #include <vector>
-
-#include "glext.h"
 #include "World.h"
 
 class Renderer
 {
 private:
-	PFNGLGENBUFFERSARBPROC glGenBuffersARB;
-	PFNGLBINDBUFFERARBPROC glBindBufferARB;
-	PFNGLBUFFERDATAARBPROC glBufferDataARB;
 	GLuint terrainDataBuffer;
 	GLfloat* terrainData;
 	int terrainSize;

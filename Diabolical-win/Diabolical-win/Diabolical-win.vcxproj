@@ -53,7 +53,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Program Files\Microsoft SDKs\Windows\v7.1\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\jeffreyp\Documents\GitHub\Diabolical-win\Diabolical-win\Diabolical-win;C:\Program Files\Microsoft SDKs\Windows\v7.1\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -85,6 +85,7 @@
     <ClInclude Include="Diabolical.h" />
     <ClInclude Include="DudeGroup.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="glew.h" />
     <ClInclude Include="glext.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="keysym.h" />
@@ -96,6 +97,7 @@
     <ClInclude Include="Structure.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Weather.h" />
+    <ClInclude Include="wglew.h" />
     <ClInclude Include="wglext.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="xorshift.h" />
@@ -123,6 +125,9 @@
     <ResourceCompile Include="Diabolical-win.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Library Include="glew32.lib" />
+    <Library Include="glew32mx.lib" />
+    <Library Include="glew32mxs.lib" />
     <Library Include="OpenGL32.Lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

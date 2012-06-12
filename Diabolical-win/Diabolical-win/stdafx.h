@@ -22,5 +22,4 @@
 #include "Renderer.h"
 #include "World.h"
 #include "Weather.h"
-#include "wglext.h"
 #include "xorshift.h"
