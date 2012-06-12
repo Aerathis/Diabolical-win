@@ -34,7 +34,14 @@ bool Diabolical::onEvent(Event event)
 
 void Diabolical::onRender()
 {
-  renderer.testRender();
+  if (gameWorld.im_getWorldMap()->getMapSize() > 0)
+	{
+		Renderer::renderer.drawTerrain();
+	}
+	else
+	{
+		Renderer::renderer.testRender();
+	}
 }
 
 void Diabolical::onExecute()
@@ -46,9 +53,4 @@ void Diabolical::onExecute()
     }
   onLoop();
   onRender();
-}
-
-Renderer* Diabolical::getRenderer()
-{
-  return &renderer;
 }

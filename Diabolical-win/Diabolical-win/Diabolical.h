@@ -30,8 +30,6 @@ class Diabolical
     eventQueue.push_back(newEvent);
   }
 
-  Renderer* getRenderer();
-
   void onExecute();
   bool onInit();
   bool onEvent(Event);

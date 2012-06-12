@@ -13,7 +13,7 @@
 #include "Input.h"
 #include "Map.h"
 #include "Object.h"
-//#include "Player.h"
+#include "Renderer.h"
 #include "Structure.h"
 #include "Weather.h"
 
@@ -49,6 +49,7 @@ class World
  public:
   World();
   void initWorld();
+	static World* gameWorld;
   
   //btDiscreteDynamicsWorld* getWorld();
   //Player* getPlayerPtr();

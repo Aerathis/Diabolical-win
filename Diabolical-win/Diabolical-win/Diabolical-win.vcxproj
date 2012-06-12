@@ -85,6 +85,7 @@
     <ClInclude Include="Diabolical.h" />
     <ClInclude Include="DudeGroup.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="glext.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="keysym.h" />
     <ClInclude Include="Map.h" />
@@ -95,6 +96,7 @@
     <ClInclude Include="Structure.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Weather.h" />
+    <ClInclude Include="wglext.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="xorshift.h" />
   </ItemGroup>

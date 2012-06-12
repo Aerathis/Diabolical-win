@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "World.h"
 
+World* World::gameWorld;
+
 World::World()
 {
   // Normal constructor business. Nulling things out and all that.
@@ -129,6 +131,7 @@ void World::runFrameWithInput(Event* Event)
 	      creators::placeResources(&objects, &terrainMap);
         worldWeather.initWeather(this);
 	      worldCreated = true;
+				Renderer::renderer.getWorldTerrain(this);
 	    }
 	  else if(worldCreated)
 	    {
