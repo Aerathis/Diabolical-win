@@ -10,5 +10,12 @@ private:
 public:
 	Camera();
 	void cameraLook();
+	void setCameraPosition(float newx, float newy, float newz, float newxrot, float newyrot);
+
+	float getCamX();
+	float getCamY();
+	float getCamZ();
+	float getCamXRot();
+	float getCamYRot();
 };
 #endif //CAMERA_H

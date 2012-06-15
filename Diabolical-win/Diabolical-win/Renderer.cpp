@@ -5,6 +5,11 @@
 
 Renderer Renderer::renderer;
 
+Camera* Renderer::getRenderCamera()
+{
+	return &renderCam;
+}
+
 void Renderer::initRenderer()
 {
 	glViewport(0,0,640,480);

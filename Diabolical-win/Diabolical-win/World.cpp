@@ -116,11 +116,11 @@ void World::runFrameWithInput(Event* Event)
   // Most of the code in this function is pretty much solely for testing purposes
   // Actual input will be handled in a much more sane fashion in a separate location
   if (Event->type == input::e_keyEvent)
-    {
-      // Handle when the "C" key is pressed
-      if(Event->key == DKeysym::DK_Key_c)
-	{
-	  if (!worldCreated)
+  {
+    // Handle when the "C" key is pressed
+    if(Event->key == DKeysym::DK_Key_c)
+	  {
+	    if (!worldCreated)
 	    {
 	      worldMap.setSize(20);
 	      terrainMap.setSize(20);
@@ -133,7 +133,7 @@ void World::runFrameWithInput(Event* Event)
 	      worldCreated = true;
 				Renderer::renderer.getWorldTerrain(this);
 	    }
-	  else if(worldCreated)
+	    else if(worldCreated)
 	    {
 	      Entity newEnt;
 	      newEnt.initEntity(0,0,0,"test");
@@ -141,11 +141,11 @@ void World::runFrameWithInput(Event* Event)
 	      citizens.push_back(newEnt);
 	      std::cout << "Entity added to citizens" << std::endl;
 	    }
-	}
+	  }
       // Handle when the "P" key is pressed
-      else if (Event->key == DKeysym::DK_Key_p)
-	{
-	  if (selected)
+    else if (Event->key == DKeysym::DK_Key_p)
+	  {
+	    if (selected)
 	    {
 	      std::cout << "Selected report" << std::endl;
 	      std::cout << "Position: (";
@@ -154,24 +154,24 @@ void World::runFrameWithInput(Event* Event)
 	      std::cout << " Hungry: " << selected->getStats().hunger;
 	      std::cout << " Tired: " << selected->getStats().tired << std::endl;
 	    }
-	  else
+	    else
 	    {
 	      std::vector<Object>::iterator it;
 	      for (it = objects.begin(); it != objects.end(); ++it)
-		{
-		  std::cout << it->pollObject() << std::endl;
-		}
+		    {
+		      std::cout << it->pollObject() << std::endl;
+		    }
 	    }
-	}
-      // Handle when the "S" key is pressed
-      else if (Event->key == DKeysym::DK_Key_s)
-	{
-	  if (selected)
+	  }
+    // Handle when the "S" key is pressed
+    else if (Event->key == DKeysym::DK_Key_s)
+	  {
+	    if (selected)
 	    {
 	      std::cout << "Clearing Selection" << std::endl;
 	      selected = NULL;
 	    }
-	  else
+	    else
 	    {
 	      std::cout << "Creating new structure" << std::endl;
 	      Structure temp;
@@ -179,92 +179,139 @@ void World::runFrameWithInput(Event* Event)
 	      structures.push_back(temp);
 	      std::cout << "Structure added to list" << std::endl;
 	    }
-	}
-      // Handle when the "1" key is pressed
-      else if (Event->key == DKeysym::DK_Key_1)
-	{
-	  if (citizens.size() >= 1 && selected != &citizens[0])
+	  }
+    // Handle when the "1" key is pressed
+    else if (Event->key == DKeysym::DK_Key_1)
+	  {
+	    if (citizens.size() >= 1 && selected != &citizens[0])
 	    {
 	      selected = &citizens[0];
 	      std::cout << "First entity selected" << std::endl;
 	    }
-	}
-      // Handle when the "2" key is pressed
-      else if (Event->key == DKeysym::DK_Key_2)
-	{
-	  if (citizens.size() >= 2 && selected != &citizens[1])
+	  }
+    // Handle when the "2" key is pressed
+    else if (Event->key == DKeysym::DK_Key_2)
+	  {
+	    if (citizens.size() >= 2 && selected != &citizens[1])
 	    {
 	      selected = &citizens[1];
 	      std::cout << "Second entity selected" << std::endl;
 	    }
-	}
-      // Handle when the "W" key is pressed
-      else if (Event->key == DKeysym::DK_Key_w)
-	{
-	  worldWeather.getWeatherMap()->setLocationAtCoord(0,0,33);
-	}
-      // Handle when the "T" key is pressed
-      else if (Event->key == DKeysym::DK_Key_t)
-	{
-	  if (selected != &citizens[1])
+	  }
+    // Handle when the "W" key is pressed
+    else if (Event->key == DKeysym::DK_Key_w)
+	  {
+	    worldWeather.getWeatherMap()->setLocationAtCoord(0,0,33);
+	  }
+    // Handle when the "T" key is pressed
+    else if (Event->key == DKeysym::DK_Key_t)
+	  {
+	    if (selected != &citizens[1])
 	    {
 	      std::cout << "Moving selected entity to entity 1" << std::endl;
 	      selected->moveToTarget(&citizens[1]);
 	    }
-	}
-      // Handle when the "M" key is pressed
-      else if (Event->key == DKeysym::DK_Key_m)
-	{
-	  if (structures.size() > 0)
+	  }
+    // Handle when the "M" key is pressed
+    else if (Event->key == DKeysym::DK_Key_m)
+	  {
+	    if (structures.size() > 0)
 	    {
 	      std::cout << "Starting construction on first structure" << std::endl;
 	      structures[0].startConstruction();	      
 	    }
-	}
-      else if (Event->key == DKeysym::DK_Key_r)
-	{
-	  if (selected)
+	  }
+    else if (Event->key == DKeysym::DK_Key_r)
+	  {
+	    if (selected)
 	    {	   
 	      organizations[0].removeFromGroup(selected);
 	    }
-	  else
+	    else
 	    {
 	      std::vector<Structure>::iterator it;
 	      for (it = structures.begin(); it != structures.end(); ++it)
-		{
-		  Structure temp = *it;
-		  temp.structureReport();
-		}
+		    {
+		      Structure temp = *it;
+		      temp.structureReport();
+		    }
 	    }
-	}
-      else if (Event->key == DKeysym::DK_Key_o)
-	{	 
-	  createNewFood();
-	}
-      else if (Event->key == DKeysym::DK_Key_f)
-	{
-	  createNewFire();
-	}
-      else if (Event->key == DKeysym::DK_Key_g)
-	{
-	  if (selected)
+	  }
+    else if (Event->key == DKeysym::DK_Key_o)
+	  {	 
+	    createNewFood();
+	  }
+    else if (Event->key == DKeysym::DK_Key_f)
+	  {
+	    createNewFire();
+	  }
+    else if (Event->key == DKeysym::DK_Key_g)
+	  {
+	    if (selected)
 	    {
 	      if (organizations[0].requestEntry(selected))
-		  {
-		    organizations[0].addToGroup(selected);
-		  }		  	    
+		    {
+		      organizations[0].addToGroup(selected);
+		    }		  	    
 	    }
-	  else
+	    else
 	    {
 	      DudeGroup newGroup;
 	      organizations.push_back(newGroup);
 	    }
-	}
-    }
-  else if (Event->type = input::e_mouseEvent)
-    {
-      std::cout << "Mouse test" << std::endl;
-    }
+	  }
+		else if (Event->key == DKeysym::DK_Up)
+		{
+			float xrotrad,yrotrad;
+			xrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamXRot() / 180.0f * M_PI);
+			yrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamYRot() / 180.0f * M_PI);
+			float newx,newy,newz,newxrot,newyrot;
+			newx = (float)(Renderer::renderer.getRenderCamera()->getCamX() + (float)(sin(yrotrad)));
+			newy = (float)(Renderer::renderer.getRenderCamera()->getCamY() - (float)(sin(xrotrad)));
+			newz = (float)(Renderer::renderer.getRenderCamera()->getCamZ() - (float)(cos(yrotrad)));
+			newxrot = Renderer::renderer.getRenderCamera()->getCamXRot();
+			newyrot = Renderer::renderer.getRenderCamera()->getCamYRot();
+			Renderer::renderer.getRenderCamera()->setCameraPosition(newx,newy,newz,newxrot,newyrot);
+		}
+		else if (Event->key == DKeysym::DK_Down)
+		{
+			float xrotrad,yrotrad,newx,newy,newz,newxrot,newyrot;
+			xrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamXRot()/180.0f*M_PI);
+			yrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamYRot()/180.0f*M_PI);
+			newx = (float)(Renderer::renderer.getRenderCamera()->getCamX() - (float)(sin(yrotrad)));
+			newy = (float)(Renderer::renderer.getRenderCamera()->getCamY() + (float)(sin(xrotrad)));
+			newz = (float)(Renderer::renderer.getRenderCamera()->getCamZ() + (float)(cos(yrotrad)));
+			newxrot = Renderer::renderer.getRenderCamera()->getCamXRot();
+			newyrot = Renderer::renderer.getRenderCamera()->getCamYRot();
+			Renderer::renderer.getRenderCamera()->setCameraPosition(newx,newy,newz,newxrot,newyrot);
+		}
+		else if (Event->key == DKeysym::DK_Left)
+		{
+			float yrotrad,newx,newy,newz,newxrot,newyrot;
+			yrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamYRot()/180.0f*M_PI);
+			newx = (float)(Renderer::renderer.getRenderCamera()->getCamX() - (float)(cos(yrotrad)));
+			newy = (float)(Renderer::renderer.getRenderCamera()->getCamY());
+			newz = (float)(Renderer::renderer.getRenderCamera()->getCamZ() - (float)(sin(yrotrad)));
+			newxrot = (float)(Renderer::renderer.getRenderCamera()->getCamXRot());
+			newyrot = (float)(Renderer::renderer.getRenderCamera()->getCamYRot());
+			Renderer::renderer.getRenderCamera()->setCameraPosition(newx,newy,newz,newxrot,newyrot);
+		}
+		else if (Event->key == DKeysym::DK_Right)
+		{
+			float yrotrad,newx,newy,newz,newxrot,newyrot;
+			yrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamYRot()/180.0f*M_PI);
+			newx = (float)(Renderer::renderer.getRenderCamera()->getCamX() + (float)(cos(yrotrad)));
+			newy = (float)(Renderer::renderer.getRenderCamera()->getCamY());
+			newz = (float)(Renderer::renderer.getRenderCamera()->getCamZ() + (float)(sin(yrotrad)));
+			newxrot = Renderer::renderer.getRenderCamera()->getCamXRot();
+			newyrot = Renderer::renderer.getRenderCamera()->getCamYRot();
+			Renderer::renderer.getRenderCamera()->setCameraPosition(newx,newy,newz,newxrot,newyrot);
+		}
+  }
+  else if (Event->type == input::e_mouseEvent)
+  {
+    std::cout << "Mouse test" << std::endl;
+  }
   // Finally run the standard frame
   runFrame();
 }

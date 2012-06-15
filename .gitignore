@@ -16,4 +16,4 @@
 *.exe
 
 # Debug folder
-
+*.tlog

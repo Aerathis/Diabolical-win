@@ -1,10 +1,10 @@
 #ifndef _WORLD_H
 #define _WORLD_H
-
-//#include <SDL/SDL.h>
+#define _USE_MATH_DEFINES
 
 #include <vector>
 #include <stdlib.h>
+#include <math.h>
 //#include "btBulletDynamicsCommon.h"
 
 #include "Creators.h"

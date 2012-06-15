@@ -32,6 +32,7 @@ private:
 
 public:
 	static Renderer renderer;
+	Camera* getRenderCamera();
 	void initRenderer();
 	void getWorldTerrain(World* world);
 	void resize(int w,int h);
