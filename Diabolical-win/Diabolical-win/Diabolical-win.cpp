@@ -83,6 +83,29 @@ input::s_DEvent translateKeyEvent(UINT key)
 	return result;
 }
 
+input::s_DEvent translateMouseEvent(WPARAM wParam, LPARAM lParam)
+{
+  input::s_DEvent result;
+  result.type = input::e_mouseEvent;
+  switch(wParam)
+  {
+  case MK_LBUTTON:
+    result.mouseEvent.button = input::e_lButton;
+    break;
+  case MK_RBUTTON:
+    result.mouseEvent.button = input::e_rButton;
+    break;
+  case MK_MBUTTON:
+    result.mouseEvent.button = input::e_mButton;
+    break;
+  default:
+    result.mouseEvent.button = input::e_noButton;
+    break;
+  }
+  result.mouseEvent.xPos = GET_X_LPARAM(lParam);
+  result.mouseEvent.yPos = GET_Y_LPARAM(lParam);
+  return result;
+}
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
@@ -243,6 +266,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			application.addEvent(translateKeyEvent(wParam));
 		}
 		break;
+  case WM_MOUSEMOVE:
+    application.addEvent(translateMouseEvent(wParam,lParam));
+    break;
 	case WM_DESTROY:
     DisableOpenGL(hWnd,hDC,hRC);
 		PostQuitMessage(0);

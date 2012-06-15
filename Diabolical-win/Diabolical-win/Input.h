@@ -21,12 +21,20 @@ namespace input
     e_mButtonRelease
   };
 
+  enum e_mouseButton
+  {
+    e_lButton,
+    e_rButton,
+    e_mButton,
+    e_noButton
+  };
+
   struct s_mouseEvent
   {
     e_mEventType type;
     int xPos;
     int yPos;
-    unsigned int button;
+    e_mouseButton button;
   };
 
   struct s_mouseState
