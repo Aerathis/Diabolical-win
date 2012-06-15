@@ -31,6 +31,18 @@ input::s_DEvent translateKeyEvent(UINT key)
 	result.type = input::e_keyEvent;
 	switch(key)
 	{
+	case VK_UP:
+		result.key = DKeysym::DK_Up;
+		break;
+	case VK_DOWN:
+		result.key = DKeysym::DK_Down;
+		break;
+	case VK_LEFT:
+		result.key = DKeysym::DK_Left;
+		break;
+	case VK_RIGHT:
+		result.key = DKeysym::DK_Right;
+		break;
 	case 0x43:
 		result.key = DKeysym::DK_Key_c;
 		break;

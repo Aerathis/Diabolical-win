@@ -3,6 +3,12 @@
 
 class Camera
 {
+private:
+	float xpos,ypos,zpos;
+	float xrot,yrot;
 
+public:
+	Camera();
+	void cameraLook();
 };
 #endif //CAMERA_H

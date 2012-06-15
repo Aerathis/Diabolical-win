@@ -1,16 +1,34 @@
 #ifndef _RENDERER_H
 #define _RENDERER_H
 
-#include "glew.h"
 #include <vector>
+
+#include "glew.h"
+
+#include "Camera.h"
 #include "World.h"
 
 class Renderer
 {
 private:
+	struct s_Vert
+	{
+		float x;
+		float y;
+		float z;
+	};
+
+	struct s_texCoord
+	{
+		float u;
+		float v;
+	};
+
 	GLuint terrainDataBuffer;
-	GLfloat* terrainData;
+	s_Vert* terrainData;
+	s_texCoord* texData;
 	int terrainSize;
+	Camera renderCam;
 
 public:
 	static Renderer renderer;

@@ -7,6 +7,10 @@ namespace DKeysym
   {
     DK_nokey,
     DK_Escape,
+		DK_Up,
+		DK_Down,
+		DK_Left,
+		DK_Right,
     DK_Key_a,
     DK_Key_b,
     DK_Key_c,
