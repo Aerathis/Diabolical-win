@@ -27,6 +27,17 @@ void Camera::setCameraPosition(float newx, float newy, float newz, float newxrot
 	yrot = newyrot;
 }
 
+void Camera::setCameraRot(float newxrot, float newyrot)
+{
+	int diffx = (int)(newxrot - lastx);
+	int diffy = (int)(newyrot - lasty);
+	lastx = newxrot;
+	lasty = newyrot;
+	xrot += (float)diffy;
+	yrot += (float)diffx;
+
+}
+
 float Camera::getCamX()
 {
 	return xpos;

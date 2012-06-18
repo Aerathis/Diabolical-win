@@ -12,8 +12,13 @@ Camera* Renderer::getRenderCamera()
 
 void Renderer::initRenderer()
 {
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glFrustum(-1.0,1.0,-1.0,1.0,1.5,20.0);
 	glViewport(0,0,640,480);
+	glMatrixMode(GL_MODELVIEW);
 	glClearColor(0,0,0,0);
+	//glClearDepth(0.0f);
   GLenum err = glewInit();
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
@@ -65,11 +70,11 @@ void Renderer::drawTerrain()
 	glLoadIdentity();
 	renderCam.cameraLook();
 	glPushMatrix();
-  glClear(GL_COLOR_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glBindBuffer(GL_ARRAY_BUFFER,terrainDataBuffer);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glVertexPointer(3,GL_FLOAT,0,0);
-	glDrawArrays(GL_TRIANGLES,0,terrainSize);
+	glDrawArrays(GL_LINES,0,terrainSize);
   glDisableClientState(GL_VERTEX_ARRAY);
   glBindBuffer(GL_ARRAY_BUFFER,0);
 	glPopMatrix();

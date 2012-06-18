@@ -312,6 +312,7 @@ void World::runFrameWithInput(Event* Event)
   {
     if (Event->mouseEvent.button == input::e_rButton)
     {
+			Renderer::renderer.getRenderCamera()->setCameraRot((float)Event->mouseEvent.xPos,(float)Event->mouseEvent.yPos);
     }
   }
   // Finally run the standard frame

@@ -6,11 +6,13 @@ class Camera
 private:
 	float xpos,ypos,zpos;
 	float xrot,yrot;
+	float lastx,lasty;
 
 public:
 	Camera();
 	void cameraLook();
 	void setCameraPosition(float newx, float newy, float newz, float newxrot, float newyrot);
+	void setCameraRot(float newxrot, float newyrot);
 
 	float getCamX();
 	float getCamY();
