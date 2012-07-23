@@ -18,7 +18,6 @@ void Renderer::initRenderer()
 	glViewport(0,0,640,480);
 	glMatrixMode(GL_MODELVIEW);
 	glClearColor(0,0,0,0);
-	//glClearDepth(0.0f);
   GLenum err = glewInit();
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
@@ -27,24 +26,32 @@ void Renderer::initRenderer()
 void Renderer::getWorldTerrain(World* world)
 {
 	int size = world->im_getWorldMap()->getMapSize();
-	terrainData = new s_Vert[size*size];
-	terrainSize = size*size*3;
+  terrainSize = size*size*6;
+	terrainData = new s_Vert[terrainSize];
 
 	int index = 0;
+  float vx;
+  float vz;
 
 	for (int y = 0; y < size; y++)
 	{
 		for (int x = 0; x < size; x++)
 		{
-			terrainData[index].x = (float)x;
-			terrainData[index].z = (float)y;
-			terrainData[index].y = (float)world->im_getWorldMap()->getLocationAtCoord(x,y);
-			index++;
+      for (int tri = 0; tri < 6; tri++)
+      {
+        vx = (float)x + ((tri == 1 || tri == 2 || tri == 5) ? 1 : 0);
+        vz = (float)y + ((tri == 2 || tri == 4 || tri == 5) ? 1 : 0);
+
+        terrainData[index].x = vx;
+        terrainData[index].y = (float)world->im_getWorldMap()->getLocationAtCoord(x,y);
+        terrainData[index].z = vz;
+        index++;
+      }
 		}
 	}
   glGenBuffers(1,&terrainDataBuffer);
   glBindBuffer(GL_ARRAY_BUFFER,terrainDataBuffer);
-  glBufferData(GL_ARRAY_BUFFER,terrainSize*sizeof(float),&terrainData,GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER,terrainSize * 3 * sizeof(float),&terrainData,GL_STATIC_DRAW);
   glBindBuffer(GL_ARRAY_BUFFER,0);
 }
 
@@ -74,7 +81,7 @@ void Renderer::drawTerrain()
 	glBindBuffer(GL_ARRAY_BUFFER,terrainDataBuffer);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glVertexPointer(3,GL_FLOAT,0,0);
-	glDrawArrays(GL_LINES,0,terrainSize);
+	glDrawArrays(GL_TRIANGLES,0,terrainSize);
   glDisableClientState(GL_VERTEX_ARRAY);
   glBindBuffer(GL_ARRAY_BUFFER,0);
 	glPopMatrix();
