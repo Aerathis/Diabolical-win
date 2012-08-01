@@ -18,6 +18,13 @@ private:
 		float z;
 	};
 
+  struct s_Norm
+  {
+    float x;
+    float y;
+    float z;
+  };
+
 	struct s_texCoord
 	{
 		float u;
