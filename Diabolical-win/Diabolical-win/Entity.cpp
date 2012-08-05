@@ -3,7 +3,6 @@
 #include "stdafx.h"
 
 #include "Entity.h"
-
 #include "Object.h"
 #include "World.h"
 

@@ -76,6 +76,7 @@ namespace pathfinder
 	std::string pathFind(const int &xStart, const int &yStart, const int &xFinish, const int &yFinish)
 	{
 		static std::priority_queue<node> pq[2];
+		static int map[20][20];
 		static int pqi;
 		static node* n0;
 		static node* m0;
@@ -117,11 +118,59 @@ namespace pathfinder
 
 			if (x == xFinish && y == yFinish)
 			{
-				string path = "";
-				while (
+				std::string path = "";
+				while (!(x == xStart) && (y == yStart))
+				{
+					j = dir_map[x][y];
+					c = '0' + (j+dir/2)%dir;
+					path = c + path;
+					x += dx[j];
+					y += dy[j];
+				}
+
+				delete n0;
+
+				while (!pq[pqi].empty())
+					pq[pqi].pop();
+				return path;
 			}
+
+			for (i = 0; i < dir; i++)
+			{
+				xdx = x + dx[i];
+				ydy = y + dy[i];
+
+				if (!(xdx < 0 || xdx > 20-1 || ydy < 0 || ydy > 20 -1 || map[xdx][ydy] == 1 || closed_nodes_map[xdx][ydy] == 1))
+				{
+					m0 = new node(xdx,ydy,n0->getLevel(),n0->getPriority());
+
+					m0->nextLevel(i);
+					m0->updatePriority(xFinish, yFinish);
+
+					if (open_nodes_map[xdx][ydy] == 0)
+					{
+						open_nodes_map[xdx][ydy] = m0->getPriority();
+						pq[pqi].push(*m0);
+						dir_map[xdx][ydy] = (i+dir/2)%dir;
+					}
+					else if (open_nodes_map[xdx][ydy] > m0->getPriority())
+					{
+						open_nodes_map[xdx][ydy] = m0->getPriority();
+						dir_map[xdx][ydy] = (i+dir/2)%dir;
+
+						while (!(pq[pqi].top().getxPos() == xdx && pq[pqi].top().getyPos() == ydy))
+						{
+							pq[1-pqi].push(pq[pqi].top());
+							pq[pqi].pop();
+						}
+					}
+					delete m0;
+				}
+			}
+			delete n0;
 		}
-	}
+		return "";
+	}	
 }
 
 #endif //PATHFINDER_H
