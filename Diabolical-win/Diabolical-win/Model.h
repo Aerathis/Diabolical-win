@@ -20,6 +20,7 @@ private:
 	
 public:
 	Model();
+  Model(char* file);
 
 	void drawModel();
 

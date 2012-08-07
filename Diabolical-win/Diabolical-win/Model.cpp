@@ -36,6 +36,6 @@ void Model::loadModelFromFile(char* file)
 	FILE* handle = fopen(file,"r");
 	if (handle != NULL)
 	{
-		
+
 	}
 }
