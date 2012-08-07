@@ -43,7 +43,7 @@ public:
 	void initRenderer();
 	void getWorldTerrain(World* world);
 	void resize(int w,int h);
-  void testRender();
+	void testRender();
 	void drawTerrain();
 };
 #endif //RENDERER_H

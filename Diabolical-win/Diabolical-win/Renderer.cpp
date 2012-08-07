@@ -18,7 +18,7 @@ void Renderer::initRenderer()
 	glViewport(0,0,640,480);
 	glMatrixMode(GL_MODELVIEW);
 	glClearColor(0,0,0,0);
-  GLenum err = glewInit();
+	GLenum err = glewInit();
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 }
