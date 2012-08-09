@@ -6,8 +6,10 @@
 #include "xorshift.h"
 
 #include "Map.h"
+#include "Model.h"
 #include "Object.h"
 #include "Weather.h"
+#include "Vector3.h"
 
 namespace creators
 {
@@ -30,6 +32,8 @@ namespace creators
   bool fillTerrainDetails(Map<e_terrainType>* terrainMap, Map<double>* worldMap);
 
   bool placeResources(std::vector<Object>* objects, Map<e_terrainType>* terrainMap);
+
+	Model createWorldModel(Map<double> worldMap);
 }
 
 #endif //CREATORS_H

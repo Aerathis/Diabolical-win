@@ -12,6 +12,7 @@
 #include "Entity.h"
 #include "Input.h"
 #include "Map.h"
+#include "Model.h"
 #include "Object.h"
 #include "Renderer.h"
 #include "Structure.h"
@@ -39,6 +40,7 @@ class World
   std::vector<DudeGroup> organizations;
   Map<double> worldMap;
   Map<creators::e_terrainType> terrainMap;
+	Model worldModel;
   Weather worldWeather;
 
   bool worldCreated;

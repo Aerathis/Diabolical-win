@@ -31,6 +31,13 @@ Model::Model()
 	}
 }
 
+Model::Model(std::vector<Vector3> verts, std::vector<Vector3> norms, std::vector<Model::s_face> inFaces)
+{
+		vertices = verts;
+		normals = norms;
+		faces = inFaces;
+}
+
 void Model::loadModelFromFile(char* file)
 {
 	FILE* handle = fopen(file,"r");
@@ -38,4 +45,19 @@ void Model::loadModelFromFile(char* file)
 	{
 
 	}
+}
+
+std::vector<Vector3> Model::getVertices()
+{
+	return vertices;
+}
+
+std::vector<Vector3> Model::getNormals()
+{
+	return normals;
+}
+
+std::vector<Model::s_face> Model::getFaces()
+{
+	return faces;
 }

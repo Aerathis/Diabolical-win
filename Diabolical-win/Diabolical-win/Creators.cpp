@@ -195,4 +195,16 @@ namespace creators
       }
     return true;
   }
+
+	Model createWorldModel(Map<double> worldMap)
+	{
+		std::vector<Vector3> vecs;
+		std::vector<Vector3> norms;
+		std::vector<Model::s_face> faces;
+
+		//TODO: This is where the magic needs to happen. 
+
+		return Model(vecs, norms, faces);
+
+	}
 }

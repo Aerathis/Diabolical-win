@@ -5,12 +5,6 @@
 
 #include "Vector3.h"
 
-struct s_face
-{
-	Vector3 vertexIndices;
-	Vector3 normalIndices;
-};
-
 class Model 
 {
 private:
@@ -19,10 +13,20 @@ private:
 	std::vector<s_face> faces;
 	
 public:
+
+	struct s_face
+	{
+		Vector3 vertexIndices;
+		Vector3 normalIndices;
+	};
+
 	Model();
+	Model(std::vector<Vector3> verts, std::vector<Vector3> norms, std::vector<Model::s_face> faces);
   Model(char* file);
 
-	void drawModel();
+	std::vector<Vector3> getVertices();
+	std::vector<Vector3> getNormals();
+	std::vector<s_face> getFaces();
 
 	void loadModelFromFile(char* file);
 };

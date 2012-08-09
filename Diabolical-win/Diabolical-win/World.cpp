@@ -16,6 +16,7 @@ void World::initWorld()
   worldMap.setSize(0);
   terrainMap.setSize(0);
   worldWeather.setWeatherMapSize(0);
+	
   
   srand(0);
 
@@ -129,9 +130,10 @@ void World::runFrameWithInput(Event* Event)
 	      creators::fillTerrainDetails(&terrainMap, &worldMap);
 	      std::cout << std::endl;
 	      creators::placeResources(&objects, &terrainMap);
+
+				worldModel = creators::createWorldModel(worldMap);
         worldWeather.initWeather(this);
 	      worldCreated = true;
-				Renderer::renderer.getWorldTerrain(this);
 	    }
 	    else if(worldCreated)
 	    {

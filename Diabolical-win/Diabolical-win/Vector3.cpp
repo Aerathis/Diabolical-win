@@ -20,3 +20,18 @@ void Vector3::zeroVector()
 	y = 0;
 	z = 0;
 }
+
+float Vector3::getX()
+{
+	return x;
+}
+
+float Vector3::getY()
+{
+	return y;
+}
+
+float Vector3::getZ()
+{
+	return z;
+}

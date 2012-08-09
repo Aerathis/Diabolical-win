@@ -11,6 +11,9 @@ public:
 	Vector3(float x, float y, float z);
 
 	void zeroVector();
+	float getX();
+	float getY();
+	float getZ();
 };
 
 #endif //VECTOR3_H
