@@ -198,13 +198,42 @@ namespace creators
 
 	Model createWorldModel(Map<double> worldMap)
 	{
-		std::vector<Vector3> vecs;
-		std::vector<Vector3> norms;
+		std::vector<Vector3> vecs;		
 		std::vector<Model::s_face> faces;
 
-		//TODO: This is where the magic needs to happen. 
+		//TODO: This is where the magic needs to happen.
 
-		return Model(vecs, norms, faces);
+	  int mapSize = worldMap.getMapSize();
+
+		for (int y = 0; y < mapSize; y++)
+		{
+			for (int x = 0; x < mapSize; x++)
+			{
+					vecs.push_back(Vector3((float)x, (float)worldMap.getLocationAtCoord(x,y), (float)y));
+			}
+		}
+
+		//int numFaces = ((mapSize -1) * 2) * 2;
+		int numFaces = ((mapSize - 1) * (mapSize - 1)) * 2;
+
+		for (int i = 0; i < numFaces; i++)
+		{
+			int row = i / mapSize;
+			Model::s_face face;
+			if (i % 2 == 0)
+			{
+				// Think that I might have mixed up vertex/face indexes for this one. 
+				// TODO: Look into ^ later.
+				face.vertexIndices = Vector3((row * mapSize) + ((i/2) % mapSize), (row * mapSize) + ((i/2) % mapSize) + 1, ((row+1) * mapSize) + ((i/2) % mapSize));
+			}
+			else
+			{
+				// TODO: Keep your eye on the return values from the i/2 terms in this one. 
+				face.vertexIndices = Vector3(((row + 1) * mapSize) + ((i/2) % mapSize), ((row + 1) * mapSize) + ((i/2) % mapSize) + 1, (row * mapSize) + ((i/2) % mapSize) + 1);
+			}
+		}
+
+		return Model(vecs, faces);
 
 	}
 }

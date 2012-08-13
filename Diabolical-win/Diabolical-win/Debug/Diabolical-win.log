@@ -1,11 +1,17 @@
-﻿Build started 05/08/2012 4:40:11 PM.
+﻿Build started 13/08/2012 1:01:50 AM.
      1>Project "C:\Users\Jeff\workspace\Diabolical-win\Diabolical-win\Diabolical-win\Diabolical-win.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Debug\Diabolical-win.unsuccessfulbuild".
+         Creating "Debug\Diabolical-win.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          All outputs are up-to-date.
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\Diabolical-win.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Entity.cpp
-         Entity.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\Diabolical-win.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Creators.cpp
+         Creators.cpp
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(227): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(227): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(227): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(232): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(232): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(232): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
        ResourceCompile:
          All outputs are up-to-date.
        ManifestResourceCompile:
@@ -20,10 +26,12 @@
          Debug\Diabolical.obj
          Debug\DudeGroup.obj
          Debug\Entity.obj
+         Debug\Model.obj
          Debug\Object.obj
          Debug\Renderer.obj
          Debug\stdafx.obj
          Debug\Structure.obj
+         Debug\Vector3.obj
          Debug\Weather.obj
          Debug\World.obj
          Debug\xorshift.obj
@@ -44,4 +52,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.61
+Time Elapsed 00:00:02.20

@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include <iostream>
 #include <fstream>
 
@@ -31,6 +33,12 @@ Model::Model()
 	}
 }
 
+Model::Model(std::vector<Vector3> verts, std::vector<Model::s_face> inFaces)
+{
+		vertices = verts;
+		faces = inFaces;
+}
+
 Model::Model(std::vector<Vector3> verts, std::vector<Vector3> norms, std::vector<Model::s_face> inFaces)
 {
 		vertices = verts;
@@ -40,11 +48,7 @@ Model::Model(std::vector<Vector3> verts, std::vector<Vector3> norms, std::vector
 
 void Model::loadModelFromFile(char* file)
 {
-	FILE* handle = fopen(file,"r");
-	if (handle != NULL)
-	{
-
-	}
+	
 }
 
 std::vector<Vector3> Model::getVertices()

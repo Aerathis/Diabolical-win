@@ -213,7 +213,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	 hWnd = CreateWindow(szWindowClass,szTitle,WS_OVERLAPPEDWINDOW,0,0,640,480,NULL,NULL,hInstance,NULL);
 
    EnableOpenGL(hWnd,&hDC,&hRC);
-	 Renderer::renderer.initRenderer();
+	 //Renderer::renderer.initRenderer();
 
    if (!hWnd)
    {

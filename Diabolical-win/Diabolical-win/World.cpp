@@ -264,6 +264,7 @@ void World::runFrameWithInput(Event* Event)
 	  }
 		else if (Event->key == DKeysym::DK_Up)
 		{
+			/*
 			float xrotrad,yrotrad;
 			xrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamXRot() / 180.0f * M_PI);
 			yrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamYRot() / 180.0f * M_PI);
@@ -274,9 +275,11 @@ void World::runFrameWithInput(Event* Event)
 			newxrot = Renderer::renderer.getRenderCamera()->getCamXRot();
 			newyrot = Renderer::renderer.getRenderCamera()->getCamYRot();
 			Renderer::renderer.getRenderCamera()->setCameraPosition(newx,newy,newz,newxrot,newyrot);
+			*/
 		}
 		else if (Event->key == DKeysym::DK_Down)
 		{
+			/*
 			float xrotrad,yrotrad,newx,newy,newz,newxrot,newyrot;
 			xrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamXRot()/180.0f*M_PI);
 			yrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamYRot()/180.0f*M_PI);
@@ -286,9 +289,11 @@ void World::runFrameWithInput(Event* Event)
 			newxrot = Renderer::renderer.getRenderCamera()->getCamXRot();
 			newyrot = Renderer::renderer.getRenderCamera()->getCamYRot();
 			Renderer::renderer.getRenderCamera()->setCameraPosition(newx,newy,newz,newxrot,newyrot);
+			*/
 		}
 		else if (Event->key == DKeysym::DK_Left)
 		{
+			/*
 			float yrotrad,newx,newy,newz,newxrot,newyrot;
 			yrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamYRot()/180.0f*M_PI);
 			newx = (float)(Renderer::renderer.getRenderCamera()->getCamX() - (float)(cos(yrotrad)));
@@ -297,9 +302,11 @@ void World::runFrameWithInput(Event* Event)
 			newxrot = (float)(Renderer::renderer.getRenderCamera()->getCamXRot());
 			newyrot = (float)(Renderer::renderer.getRenderCamera()->getCamYRot());
 			Renderer::renderer.getRenderCamera()->setCameraPosition(newx,newy,newz,newxrot,newyrot);
+			*/
 		}
 		else if (Event->key == DKeysym::DK_Right)
 		{
+			/*
 			float yrotrad,newx,newy,newz,newxrot,newyrot;
 			yrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamYRot()/180.0f*M_PI);
 			newx = (float)(Renderer::renderer.getRenderCamera()->getCamX() + (float)(cos(yrotrad)));
@@ -308,13 +315,14 @@ void World::runFrameWithInput(Event* Event)
 			newxrot = Renderer::renderer.getRenderCamera()->getCamXRot();
 			newyrot = Renderer::renderer.getRenderCamera()->getCamYRot();
 			Renderer::renderer.getRenderCamera()->setCameraPosition(newx,newy,newz,newxrot,newyrot);
+			*/
 		}
   }
   else if (Event->type == input::e_mouseEvent)
   {
     if (Event->mouseEvent.button == input::e_rButton)
     {
-			Renderer::renderer.getRenderCamera()->setCameraRot((float)Event->mouseEvent.xPos,(float)Event->mouseEvent.yPos);
+			//Renderer::renderer.getRenderCamera()->setCameraRot((float)Event->mouseEvent.xPos,(float)Event->mouseEvent.yPos);
     }
   }
   // Finally run the standard frame

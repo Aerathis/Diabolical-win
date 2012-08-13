@@ -36,11 +36,11 @@ void Diabolical::onRender()
 {
   if (gameWorld.im_getWorldMap()->getMapSize() > 0)
 	{
-		Renderer::renderer.drawTerrain();
+		//Renderer::renderer.drawTerrain();
 	}
 	else
 	{
-		Renderer::renderer.testRender();
+		//Renderer::renderer.testRender();
 	}
 }
 
