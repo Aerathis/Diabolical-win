@@ -198,7 +198,8 @@ namespace creators
 
 	Model createWorldModel(Map<double> worldMap)
 	{
-		std::vector<Vector3> vecs;		
+		std::vector<Vector3> vecs;
+		std::vector<Vector3> norms;
 		std::vector<Model::s_face> faces;
 
 		//TODO: This is where the magic needs to happen.
@@ -231,6 +232,27 @@ namespace creators
 				// TODO: Keep your eye on the return values from the i/2 terms in this one. 
 				face.vertexIndices = Vector3(((row + 1) * mapSize) + ((i/2) % mapSize), ((row + 1) * mapSize) + ((i/2) % mapSize) + 1, (row * mapSize) + ((i/2) % mapSize) + 1);
 			}
+		}
+
+		int numVecs = vecs.size();
+
+		for (int j = 0; j < numVecs; j++)
+		{
+			std::vector<Model::s_face> contributors;
+			for (int k = 0; k < numFaces; k++)
+			{
+				int v1 = faces[k].vertexIndices.getX();
+				int v2 = faces[k].vertexIndices.getY();
+				int v3 = faces[k].vertexIndices.getZ();
+
+				if (v1 == j || v2 == j || v3 == j)
+				{
+					contributors.push_back(faces[k]);
+				}
+			}
+
+			// We have the contributing faces at this point in contributors.
+			// TODO: Find the surface normals for the faces, then we average them together to find the vertex normals.
 		}
 
 		return Model(vecs, faces);
