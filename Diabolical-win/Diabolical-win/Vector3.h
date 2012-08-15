@@ -14,6 +14,11 @@ public:
 	float getX();
 	float getY();
 	float getZ();
+
+	Vector3 normalize();
+
+	const Vector3 operator+(const Vector3 other) const;
+	const Vector3 operator-(const Vector3 other) const;
 };
 
 #endif //VECTOR3_H

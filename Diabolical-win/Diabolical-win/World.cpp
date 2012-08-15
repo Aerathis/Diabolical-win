@@ -123,8 +123,8 @@ void World::runFrameWithInput(Event* Event)
 	  {
 	    if (!worldCreated)
 	    {
-	      worldMap.setSize(20);
-	      terrainMap.setSize(20);
+	      worldMap.setSize(4);
+	      terrainMap.setSize(4);
 	      creators::fillTerrain(&worldMap);
 	      std::cout << std::endl;
 	      creators::fillTerrainDetails(&terrainMap, &worldMap);

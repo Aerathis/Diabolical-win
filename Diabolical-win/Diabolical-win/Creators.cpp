@@ -219,19 +219,20 @@ namespace creators
 
 		for (int i = 0; i < numFaces; i++)
 		{
-			int row = i / mapSize;
+			int row = i / ((mapSize - 1) * 2);
 			Model::s_face face;
 			if (i % 2 == 0)
 			{
 				// Think that I might have mixed up vertex/face indexes for this one. 
 				// TODO: Look into ^ later.
-				face.vertexIndices = Vector3((row * mapSize) + ((i/2) % mapSize), (row * mapSize) + ((i/2) % mapSize) + 1, ((row+1) * mapSize) + ((i/2) % mapSize));
+				face.vertexIndices = Vector3((row * mapSize) + ((i/2) % (mapSize - 1)), (row * mapSize) + ((i/2) % (mapSize - 1)) + 1, ((row+1) * mapSize) + ((i/2) % (mapSize - 1)));
 			}
 			else
 			{
 				// TODO: Keep your eye on the return values from the i/2 terms in this one. 
-				face.vertexIndices = Vector3(((row + 1) * mapSize) + ((i/2) % mapSize), ((row + 1) * mapSize) + ((i/2) % mapSize) + 1, (row * mapSize) + ((i/2) % mapSize) + 1);
+				face.vertexIndices = Vector3(((row + 1) * mapSize) + ((i/2) % (mapSize - 1)) + 1, ((row + 1) * mapSize) + ((i/2) % (mapSize - 1)), (row * mapSize) + ((i/2) % (mapSize - 1)) + 1);
 			}
+			faces.push_back(face);
 		}
 
 		int numVecs = vecs.size();
@@ -251,11 +252,30 @@ namespace creators
 				}
 			}
 
+			std::vector<Vector3> faceNormals;
 			// We have the contributing faces at this point in contributors.
 			// TODO: Find the surface normals for the faces, then we average them together to find the vertex normals.
+			for (int i = 0; i < contributors.size(); i++)
+			{
+				Vector3 U = vecs[contributors[i].vertexIndices.getY()] - vecs[contributors[i].vertexIndices.getX()];
+				Vector3 V = vecs[contributors[i].vertexIndices.getZ()] - vecs[contributors[i].vertexIndices.getX()];
+
+				float xNorm = (U.getY() * V.getZ()) - (U.getZ() * V.getY());
+				float yNorm = (U.getZ() * V.getX()) - (U.getX() * V.getZ());
+				float zNorm = (U.getX() * V.getY()) - (U.getY() * V.getX());
+
+				faceNormals.push_back(Vector3(xNorm, yNorm, zNorm));
+			}
+
+			Vector3 vertNorm;
+
+			for (int i = 0; i < faceNormals.size(); i++)
+			{
+				Vector3 tempNorm = faceNormals[i];
+				vertNorm = vertNorm + tempNorm;
+			}
+			norms.push_back(vertNorm.normalize());
 		}
-
-		return Model(vecs, faces);
-
+		return Model(vecs, norms, faces);
 	}
 }
