@@ -131,7 +131,7 @@ void World::runFrameWithInput(Event* Event)
 	      std::cout << std::endl;
 	      creators::placeResources(&objects, &terrainMap);
 
-				worldModel = creators::createWorldModel(worldMap);
+				worldModel = creators::createWorldModel(&worldMap);
         worldWeather.initWeather(this);
 	      worldCreated = true;
 	    }

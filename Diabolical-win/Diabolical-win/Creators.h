@@ -33,7 +33,7 @@ namespace creators
 
   bool placeResources(std::vector<Object>* objects, Map<e_terrainType>* terrainMap);
 
-	Model createWorldModel(Map<double> worldMap);
+	Model createWorldModel(Map<double>* worldMap);
 }
 
 #endif //CREATORS_H

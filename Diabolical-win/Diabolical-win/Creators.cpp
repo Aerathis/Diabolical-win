@@ -196,7 +196,7 @@ namespace creators
     return true;
   }
 
-	Model createWorldModel(Map<double> worldMap)
+	Model createWorldModel(Map<double>* worldMap)
 	{
 		std::vector<Vector3> vecs;
 		std::vector<Vector3> norms;
@@ -204,13 +204,13 @@ namespace creators
 
 		//TODO: This is where the magic needs to happen.
 
-	  int mapSize = worldMap.getMapSize();
+	  int mapSize = worldMap->getMapSize();
 
 		for (int y = 0; y < mapSize; y++)
 		{
 			for (int x = 0; x < mapSize; x++)
 			{
-					vecs.push_back(Vector3((float)x, (float)worldMap.getLocationAtCoord(x,y), (float)y));
+					vecs.push_back(Vector3((float)x, (float)worldMap->getLocationAtCoord(x,y), (float)y));
 			}
 		}
 
@@ -275,6 +275,11 @@ namespace creators
 				vertNorm = vertNorm + tempNorm;
 			}
 			norms.push_back(vertNorm.normalize());
+		}
+
+		for (int i = 0; i < faces.size(); i++)
+		{
+			faces[i].normalIndices = Vector3(faces[i].vertexIndices.getX(), faces[i].vertexIndices.getY(), faces[i].vertexIndices.getZ());
 		}
 		return Model(vecs, norms, faces);
 	}
