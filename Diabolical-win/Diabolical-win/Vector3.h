@@ -11,6 +11,7 @@ public:
 	Vector3(float x, float y, float z);
 
 	void zeroVector();
+	void setVector(float x, float y, float z);
 	float getX();
 	float getY();
 	float getZ();

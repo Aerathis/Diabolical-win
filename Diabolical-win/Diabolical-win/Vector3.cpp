@@ -23,6 +23,13 @@ void Vector3::zeroVector()
 	z = 0;
 }
 
+void Vector3::setVector(float inx, float iny, float inz)
+{
+	x = inx;
+	y = iny;
+	z = inz;
+}
+
 float Vector3::getX()
 {
 	return x;
