@@ -4,3 +4,13 @@
 #include <iostream>
 
 Renderer Renderer::renderer;
+
+Renderer::Renderer()
+{
+	renderCamera = new Camera();
+}
+
+Camera* Renderer::getRenderCamera()
+{
+	return renderCamera;
+}

@@ -12,6 +12,10 @@ private:
 
 public:
 	Rotation();
+	Rotation(float inx, float iny, float inz);
+
+	const Rotation operator=(Vector3 other);
+	const Rotation operator+(Rotation other);
 };
 
 #endif //ROTATION_H

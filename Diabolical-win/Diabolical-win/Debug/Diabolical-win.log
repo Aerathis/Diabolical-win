@@ -1,11 +1,19 @@
-﻿Build started 17/08/2012 1:15:16 AM.
+﻿Build started 18/08/2012 9:01:51 PM.
      1>Project "C:\Users\Jeff\workspace\Diabolical-win\Diabolical-win\Diabolical-win\Diabolical-win.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Debug\Diabolical-win.unsuccessfulbuild".
+         Creating "Debug\Diabolical-win.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          All outputs are up-to-date.
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\Diabolical-win.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp
-         Camera.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\Diabolical-win.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt World.cpp
+         World.cpp
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(271): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(272): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(282): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(283): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(293): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(294): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(304): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(305): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
        ResourceCompile:
          All outputs are up-to-date.
        ManifestResourceCompile:
@@ -47,4 +55,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.52
+Time Elapsed 00:00:00.63

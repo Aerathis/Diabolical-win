@@ -11,9 +11,13 @@
 class Renderer
 {
 private:
-	
+	Camera* renderCamera;
+
 public:
 	static Renderer renderer;
+
+	Renderer();
+	Camera* getRenderCamera();
 	
 };
 #endif //RENDERER_H

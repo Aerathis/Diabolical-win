@@ -9,10 +9,14 @@ class Camera
 private:
 	
 	Vector3 position;
+	Rotation rotation;
 
 public:
 	
 	Camera();
+
+	Rotation getViewRotation();
+	Vector3 getViewPosition();
 
 	void setCameraLocation(float x, float y, float z);
 	void moveCamera(Rotation rotation, Vector3 translation);

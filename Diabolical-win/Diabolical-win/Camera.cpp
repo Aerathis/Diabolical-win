@@ -7,11 +7,23 @@ Camera::Camera()
 	position.setVector(1.0f,1.0f,1.0f);
 }
 
+Rotation Camera::getViewRotation()
+{
+	return rotation;
+}
+
+Vector3 Camera::getViewPosition()
+{
+	return position;
+}
+
 void Camera::setCameraLocation(float x, float y, float z)
 {
 	position.setVector(x, y, z);
 }
 
-void Camera::moveCamera(Rotation rotation, Vector3 translation)
+void Camera::moveCamera(Rotation rotate, Vector3 translation)
 {
+	rotation = rotation + rotate;
+	position = position + translation;
 }

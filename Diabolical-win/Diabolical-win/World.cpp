@@ -262,67 +262,57 @@ void World::runFrameWithInput(Event* Event)
 	      organizations.push_back(newGroup);
 	    }
 	  }
+		// Handle when the up cursor key is pressed
 		else if (Event->key == DKeysym::DK_Up)
 		{
-			/*
-			float xrotrad,yrotrad;
-			xrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamXRot() / 180.0f * M_PI);
-			yrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamYRot() / 180.0f * M_PI);
-			float newx,newy,newz,newxrot,newyrot;
-			newx = (float)(Renderer::renderer.getRenderCamera()->getCamX() + (float)(sin(yrotrad)));
-			newy = (float)(Renderer::renderer.getRenderCamera()->getCamY() - (float)(sin(xrotrad)));
-			newz = (float)(Renderer::renderer.getRenderCamera()->getCamZ() - (float)(cos(yrotrad)));
-			newxrot = Renderer::renderer.getRenderCamera()->getCamXRot();
-			newyrot = Renderer::renderer.getRenderCamera()->getCamYRot();
-			Renderer::renderer.getRenderCamera()->setCameraPosition(newx,newy,newz,newxrot,newyrot);
-			*/
+			Rotation camRot = Renderer::renderer.getRenderCamera()->getViewRotation();
+			float yrotrad = camRot.getY();
+			float xrotrad = camRot.getX();
+			yrotrad = yrotrad/180.0f*M_PI;
+			xrotrad = xrotrad/180.0f*M_PI;
+			Vector3 trans = Vector3((float)(sin(yrotrad)),-(float)(sin(xrotrad)),-(float)(cos(yrotrad)));
+			Renderer::renderer.getRenderCamera()->moveCamera(camRot, trans);
 		}
+		// Handle when the down cursor key is pressed
 		else if (Event->key == DKeysym::DK_Down)
 		{
-			/*
-			float xrotrad,yrotrad,newx,newy,newz,newxrot,newyrot;
-			xrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamXRot()/180.0f*M_PI);
-			yrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamYRot()/180.0f*M_PI);
-			newx = (float)(Renderer::renderer.getRenderCamera()->getCamX() - (float)(sin(yrotrad)));
-			newy = (float)(Renderer::renderer.getRenderCamera()->getCamY() + (float)(sin(xrotrad)));
-			newz = (float)(Renderer::renderer.getRenderCamera()->getCamZ() + (float)(cos(yrotrad)));
-			newxrot = Renderer::renderer.getRenderCamera()->getCamXRot();
-			newyrot = Renderer::renderer.getRenderCamera()->getCamYRot();
-			Renderer::renderer.getRenderCamera()->setCameraPosition(newx,newy,newz,newxrot,newyrot);
-			*/
+			Rotation camRot = Renderer::renderer.getRenderCamera()->getViewRotation();
+			float yrotrad = camRot.getY();
+			float xrotrad = camRot.getX();
+			yrotrad = yrotrad/180.0f*M_PI;
+			xrotrad = xrotrad/180.0f*M_PI;
+			Vector3 trans = Vector3(-(float)(sin(yrotrad)), (float)(sin(xrotrad)), (float)(cos(yrotrad)));
+			Renderer::renderer.getRenderCamera()->moveCamera(camRot, trans);
 		}
+		// Handle when the left cursor key is pressed
 		else if (Event->key == DKeysym::DK_Left)
 		{
-			/*
-			float yrotrad,newx,newy,newz,newxrot,newyrot;
-			yrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamYRot()/180.0f*M_PI);
-			newx = (float)(Renderer::renderer.getRenderCamera()->getCamX() - (float)(cos(yrotrad)));
-			newy = (float)(Renderer::renderer.getRenderCamera()->getCamY());
-			newz = (float)(Renderer::renderer.getRenderCamera()->getCamZ() - (float)(sin(yrotrad)));
-			newxrot = (float)(Renderer::renderer.getRenderCamera()->getCamXRot());
-			newyrot = (float)(Renderer::renderer.getRenderCamera()->getCamYRot());
-			Renderer::renderer.getRenderCamera()->setCameraPosition(newx,newy,newz,newxrot,newyrot);
-			*/
+			Rotation camRot = Renderer::renderer.getRenderCamera()->getViewRotation();
+			float yrotrad = camRot.getY();
+			float xrotrad = camRot.getX();
+			yrotrad = yrotrad/180.0f*M_PI;
+			xrotrad = xrotrad/180.0f*M_PI;
+			Vector3 trans = Vector3(-(float)(cos(yrotrad)), Renderer::renderer.getRenderCamera()->getViewPosition().getY(),-(float)(sin(yrotrad)));
+			Renderer::renderer.getRenderCamera()->moveCamera(camRot, trans);
 		}
+		// Handle when the right cursor key is pressed
 		else if (Event->key == DKeysym::DK_Right)
 		{
-			/*
-			float yrotrad,newx,newy,newz,newxrot,newyrot;
-			yrotrad = (float)(Renderer::renderer.getRenderCamera()->getCamYRot()/180.0f*M_PI);
-			newx = (float)(Renderer::renderer.getRenderCamera()->getCamX() + (float)(cos(yrotrad)));
-			newy = (float)(Renderer::renderer.getRenderCamera()->getCamY());
-			newz = (float)(Renderer::renderer.getRenderCamera()->getCamZ() + (float)(sin(yrotrad)));
-			newxrot = Renderer::renderer.getRenderCamera()->getCamXRot();
-			newyrot = Renderer::renderer.getRenderCamera()->getCamYRot();
-			Renderer::renderer.getRenderCamera()->setCameraPosition(newx,newy,newz,newxrot,newyrot);
-			*/
+			Rotation camRot = Renderer::renderer.getRenderCamera()->getViewRotation();
+			float yrotrad = camRot.getY();
+			float xrotrad = camRot.getX();
+			yrotrad = yrotrad/180.0f*M_PI;
+			xrotrad = xrotrad/180.0f*M_PI;
+			Vector3 trans = Vector3((float)(cos(yrotrad)),Renderer::renderer.getRenderCamera()->getViewPosition().getY(),(float)(sin(yrotrad)));
+			Renderer::renderer.getRenderCamera()->moveCamera(camRot, trans);
 		}
   }
+	// Handle any mouse input
   else if (Event->type == input::e_mouseEvent)
   {
     if (Event->mouseEvent.button == input::e_rButton)
     {
-			//Renderer::renderer.getRenderCamera()->setCameraRot((float)Event->mouseEvent.xPos,(float)Event->mouseEvent.yPos);
+			Rotation rot = Rotation((float)Event->mouseEvent.xPos, (float)Event->mouseEvent.yPos,0.0f);
     }
   }
   // Finally run the standard frame
