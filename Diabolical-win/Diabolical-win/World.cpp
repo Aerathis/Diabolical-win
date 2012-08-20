@@ -319,6 +319,12 @@ void World::runFrameWithInput(Event* Event)
   runFrame();
 }
 
+void World::frameDraw()
+{
+	// Draw the terrain first, then draw anything else on top of it.
+	Renderer::renderer.drawModel(worldModel);
+}
+
 void World::createNewFood()
 {
   int objX = (rand()%20);

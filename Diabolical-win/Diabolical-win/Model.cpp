@@ -65,3 +65,21 @@ std::vector<Model::s_face> Model::getFaces()
 {
 	return faces;
 }
+
+std::vector<Model::s_renderTri> Model::createRenderTris()
+{
+	int numFaces = faces.size();
+	std::vector<Model::s_renderTri> result;
+	for (int i = 0; i < numFaces; i++)
+	{
+		Model::s_renderTri tri;
+		tri.vec1 = vertices[faces[i].vertexIndices.getX()];
+		tri.vec2 = vertices[faces[i].vertexIndices.getY()];
+		tri.vec3 = vertices[faces[i].vertexIndices.getZ()];
+		tri.norm1 = normals[faces[i].normalIndices.getX()];
+		tri.norm2 = normals[faces[i].normalIndices.getY()];
+		tri.norm3 = normals[faces[i].normalIndices.getZ()];
+		result.push_back(tri);
+	}
+	return result;
+}

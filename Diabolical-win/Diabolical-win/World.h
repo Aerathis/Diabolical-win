@@ -70,6 +70,8 @@ class World
   void runFrame();
   void runFrameWithInput(Event* Event);
 
+	void frameDraw();
+
 };
 
 #endif //WORLD_H

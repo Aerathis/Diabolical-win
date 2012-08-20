@@ -6,6 +6,7 @@
 #include "glew.h"
 
 #include "Camera.h"
+#include "Model.h"
 #include "World.h"
 
 class Renderer
@@ -19,5 +20,6 @@ public:
 	Renderer();
 	Camera* getRenderCamera();
 	
+	void drawModel(Model model);
 };
 #endif //RENDERER_H
