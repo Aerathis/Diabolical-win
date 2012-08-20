@@ -20,6 +20,7 @@ public:
 	Renderer();
 	Camera* getRenderCamera();
 	
+	bool initRenderer(int width, int height);
 	void drawModel(Model model);
 };
 #endif //RENDERER_H

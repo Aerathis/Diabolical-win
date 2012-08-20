@@ -4,7 +4,8 @@
 
 Camera::Camera()
 {
-	position.setVector(1.0f,1.0f,1.0f);
+	position.setVector(-0.5f,-0.5f,-0.5f);
+	rotation.setVector(0,0,0);
 }
 
 Rotation Camera::getViewRotation()

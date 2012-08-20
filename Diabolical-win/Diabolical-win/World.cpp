@@ -271,7 +271,7 @@ void World::runFrameWithInput(Event* Event)
 			yrotrad = yrotrad/180.0f*M_PI;
 			xrotrad = xrotrad/180.0f*M_PI;
 			Vector3 trans = Vector3((float)(sin(yrotrad)),-(float)(sin(xrotrad)),-(float)(cos(yrotrad)));
-			Renderer::renderer.getRenderCamera()->moveCamera(camRot, trans);
+			Renderer::renderer.getRenderCamera()->moveCamera(Rotation(), trans);
 		}
 		// Handle when the down cursor key is pressed
 		else if (Event->key == DKeysym::DK_Down)
@@ -282,7 +282,7 @@ void World::runFrameWithInput(Event* Event)
 			yrotrad = yrotrad/180.0f*M_PI;
 			xrotrad = xrotrad/180.0f*M_PI;
 			Vector3 trans = Vector3(-(float)(sin(yrotrad)), (float)(sin(xrotrad)), (float)(cos(yrotrad)));
-			Renderer::renderer.getRenderCamera()->moveCamera(camRot, trans);
+			Renderer::renderer.getRenderCamera()->moveCamera(Rotation(), trans);
 		}
 		// Handle when the left cursor key is pressed
 		else if (Event->key == DKeysym::DK_Left)
@@ -293,7 +293,7 @@ void World::runFrameWithInput(Event* Event)
 			yrotrad = yrotrad/180.0f*M_PI;
 			xrotrad = xrotrad/180.0f*M_PI;
 			Vector3 trans = Vector3(-(float)(cos(yrotrad)), Renderer::renderer.getRenderCamera()->getViewPosition().getY(),-(float)(sin(yrotrad)));
-			Renderer::renderer.getRenderCamera()->moveCamera(camRot, trans);
+			Renderer::renderer.getRenderCamera()->moveCamera(Rotation(), trans);
 		}
 		// Handle when the right cursor key is pressed
 		else if (Event->key == DKeysym::DK_Right)
@@ -304,7 +304,7 @@ void World::runFrameWithInput(Event* Event)
 			yrotrad = yrotrad/180.0f*M_PI;
 			xrotrad = xrotrad/180.0f*M_PI;
 			Vector3 trans = Vector3((float)(cos(yrotrad)),Renderer::renderer.getRenderCamera()->getViewPosition().getY(),(float)(sin(yrotrad)));
-			Renderer::renderer.getRenderCamera()->moveCamera(camRot, trans);
+			Renderer::renderer.getRenderCamera()->moveCamera(Rotation(), trans);
 		}
   }
 	// Handle any mouse input
@@ -313,6 +313,7 @@ void World::runFrameWithInput(Event* Event)
     if (Event->mouseEvent.button == input::e_rButton)
     {
 			Rotation rot = Rotation((float)Event->mouseEvent.xPos, (float)Event->mouseEvent.yPos,0.0f);
+			Renderer::renderer.getRenderCamera()->moveCamera(rot,Vector3());
     }
   }
   // Finally run the standard frame
