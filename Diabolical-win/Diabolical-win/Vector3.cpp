@@ -45,6 +45,11 @@ float Vector3::getZ()
 	return z;
 }
 
+float Vector3::length() const
+{
+	return (float)sqrt((x*x)+(y*y)+(z*z));
+}
+
 Vector3 Vector3::normalize()
 {
 	float mag = sqrt((x * x) + (y * y) + (z * z));
@@ -70,6 +75,22 @@ const Vector3 Vector3::operator+(const Vector3 other) const
 	return result;
 }
 
+const Vector3 &Vector3::operator=(const Vector3 other)
+{
+	x = other.x;
+	y = other.y;
+	z = other.z;
+	return *this;
+}
+
+const Vector3 &Vector3::operator+=(const Vector3 other)
+{
+	x += other.x;
+	y += other.y;
+	z += other.z;
+	return *this;
+}
+
 const Vector3 Vector3::operator-(const Vector3 other) const
 {
 	Vector3 result;
@@ -81,4 +102,65 @@ const Vector3 Vector3::operator-(const Vector3 other) const
 
 	result = self + convOther;
 	return result;
+}
+
+const Vector3 &Vector3::operator-=(const Vector3 other)
+{
+	x -= other.x;
+	y -= other.y;
+	z -= other.z;
+	return *this;
+}
+
+const Vector3 Vector3::operator-() const
+{
+	Vector3 result(-x,-y,-z);
+	return result;
+}
+
+const float Vector3::operator*(const Vector3 other) const
+{
+	float result = 0;
+	Vector3 self = *this;
+	result = self.x * other.x + self.y * other.y + self.z * other.z;
+	return result;
+}
+
+const Vector3 Vector3::operator*(float scale) const
+{
+	Vector3 self = *this;
+	self.x *= scale;
+	self.y *= scale;
+	self.z *= scale;
+	return self;
+}
+
+const Vector3 &Vector3::operator*=(float scale)
+{
+	x *= scale;
+	y *= scale;
+	z *= scale;
+	return *this;
+}
+const Vector3 Vector3::operator/(float scale) const
+{
+	Vector3 self = *this;
+	self.x /= scale;
+	self.y /= scale;
+	self.z /= scale;
+	return self;
+}
+
+const Vector3 &Vector3::operator/=(float scale)
+{
+	x /= scale;
+	y /= scale;
+	z /= scale;
+	return *this;
+}
+
+const Vector3 Vector3::operator%(const Vector3 other) const
+{
+	Vector3 temp(y*other.z - z*other.y,z*other.x-x*other.z,x*other.y-y*other.x);
+	return temp;
 }

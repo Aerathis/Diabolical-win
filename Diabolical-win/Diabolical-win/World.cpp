@@ -268,8 +268,8 @@ void World::runFrameWithInput(Event* Event)
 			Rotation camRot = Renderer::renderer.getRenderCamera()->getViewRotation();
 			float yrotrad = camRot.getY();
 			float xrotrad = camRot.getX();
-			yrotrad = yrotrad/180.0f*M_PI;
-			xrotrad = xrotrad/180.0f*M_PI;
+			yrotrad = (float)(yrotrad/180.0f*M_PI);
+			xrotrad = (float)(xrotrad/180.0f*M_PI);
 			Vector3 trans = Vector3((float)(sin(yrotrad)),-(float)(sin(xrotrad)),-(float)(cos(yrotrad)));
 			Renderer::renderer.getRenderCamera()->moveCamera(Rotation(), trans);
 		}
@@ -279,8 +279,8 @@ void World::runFrameWithInput(Event* Event)
 			Rotation camRot = Renderer::renderer.getRenderCamera()->getViewRotation();
 			float yrotrad = camRot.getY();
 			float xrotrad = camRot.getX();
-			yrotrad = yrotrad/180.0f*M_PI;
-			xrotrad = xrotrad/180.0f*M_PI;
+			yrotrad = (float)(yrotrad/180.0f*M_PI);
+			xrotrad = (float)(xrotrad/180.0f*M_PI);
 			Vector3 trans = Vector3(-(float)(sin(yrotrad)), (float)(sin(xrotrad)), (float)(cos(yrotrad)));
 			Renderer::renderer.getRenderCamera()->moveCamera(Rotation(), trans);
 		}
@@ -290,8 +290,8 @@ void World::runFrameWithInput(Event* Event)
 			Rotation camRot = Renderer::renderer.getRenderCamera()->getViewRotation();
 			float yrotrad = camRot.getY();
 			float xrotrad = camRot.getX();
-			yrotrad = yrotrad/180.0f*M_PI;
-			xrotrad = xrotrad/180.0f*M_PI;
+			yrotrad = (float)(yrotrad/180.0f*M_PI);
+			xrotrad = (float)(xrotrad/180.0f*M_PI);
 			Vector3 trans = Vector3(-(float)(cos(yrotrad)), Renderer::renderer.getRenderCamera()->getViewPosition().getY(),-(float)(sin(yrotrad)));
 			Renderer::renderer.getRenderCamera()->moveCamera(Rotation(), trans);
 		}
@@ -301,8 +301,8 @@ void World::runFrameWithInput(Event* Event)
 			Rotation camRot = Renderer::renderer.getRenderCamera()->getViewRotation();
 			float yrotrad = camRot.getY();
 			float xrotrad = camRot.getX();
-			yrotrad = yrotrad/180.0f*M_PI;
-			xrotrad = xrotrad/180.0f*M_PI;
+			yrotrad = (float)(yrotrad/180.0f*M_PI);
+			xrotrad = (float)(xrotrad/180.0f*M_PI);
 			Vector3 trans = Vector3((float)(cos(yrotrad)),Renderer::renderer.getRenderCamera()->getViewPosition().getY(),(float)(sin(yrotrad)));
 			Renderer::renderer.getRenderCamera()->moveCamera(Rotation(), trans);
 		}
