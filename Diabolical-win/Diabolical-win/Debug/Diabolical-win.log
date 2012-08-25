@@ -1,33 +1,75 @@
-﻿Build started 20/08/2012 3:35:07 PM.
+﻿Build started 24/08/2012 11:51:43 PM.
      1>Project "C:\Users\Jeff\workspace\Diabolical-win\Diabolical-win\Diabolical-win\Diabolical-win.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "Debug\Diabolical-win.unsuccessfulbuild".
        ClCompile:
-         All outputs are up-to-date.
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\Diabolical-win.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp World.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Debug\Diabolical-win.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\Diabolical-win.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Brain.cpp Camera.cpp Creators.cpp "Diabolical-win.cpp" Diabolical.cpp DudeGroup.cpp Entity.cpp Model.cpp Object.cpp Renderer.cpp Rotation.cpp Structure.cpp Vector3.cpp Weather.cpp World.cpp xorshift.cpp
+         xorshift.cpp
          World.cpp
      1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(269): error C2039: 'getY' : is not a member of 'Rotation'
-                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(9) : see declaration of 'Rotation'
+                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(7) : see declaration of 'Rotation'
      1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(270): error C2039: 'getX' : is not a member of 'Rotation'
-                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(9) : see declaration of 'Rotation'
+                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(7) : see declaration of 'Rotation'
      1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(280): error C2039: 'getY' : is not a member of 'Rotation'
-                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(9) : see declaration of 'Rotation'
+                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(7) : see declaration of 'Rotation'
      1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(281): error C2039: 'getX' : is not a member of 'Rotation'
-                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(9) : see declaration of 'Rotation'
+                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(7) : see declaration of 'Rotation'
      1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(291): error C2039: 'getY' : is not a member of 'Rotation'
-                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(9) : see declaration of 'Rotation'
+                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(7) : see declaration of 'Rotation'
      1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(292): error C2039: 'getX' : is not a member of 'Rotation'
-                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(9) : see declaration of 'Rotation'
+                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(7) : see declaration of 'Rotation'
      1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(302): error C2039: 'getY' : is not a member of 'Rotation'
-                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(9) : see declaration of 'Rotation'
+                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(7) : see declaration of 'Rotation'
      1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(303): error C2039: 'getX' : is not a member of 'Rotation'
-                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(9) : see declaration of 'Rotation'
+                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(7) : see declaration of 'Rotation'
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\world.cpp(315): error C2661: 'Rotation::Rotation' : no overloaded function takes 3 arguments
+         Weather.cpp
+         Vector3.cpp
+         Structure.cpp
+         Rotation.cpp
+         Renderer.cpp
+         Object.cpp
+         Model.cpp
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\model.cpp(12): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\model.cpp(20): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\model.cpp(28): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\model.cpp(76): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\model.cpp(77): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\model.cpp(78): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\model.cpp(79): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\model.cpp(80): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\model.cpp(81): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+         Entity.cpp
+         DudeGroup.cpp
+         Diabolical.cpp
+         Diabolical-win.cpp
+         Creators.cpp
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(228): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(228): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(228): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(233): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(233): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(233): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(245): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(246): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(247): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(258): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(260): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(260): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(261): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(261): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(272): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\creators.cpp(280): warning C4018: '<' : signed/unsigned mismatch
          Camera.cpp
      1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\camera.cpp(8): error C2039: 'setVector' : is not a member of 'Rotation'
-                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(9) : see declaration of 'Rotation'
+                 c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\rotation.h(7) : see declaration of 'Rotation'
+     1>c:\users\jeff\workspace\diabolical-win\diabolical-win\diabolical-win\camera.cpp(28): error C2676: binary '+' : 'Rotation' does not define this operator or a conversion to a type acceptable to the predefined operator
+         Brain.cpp
          Generating Code...
      1>Done Building Project "C:\Users\Jeff\workspace\Diabolical-win\Diabolical-win\Diabolical-win\Diabolical-win.vcxproj" (build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.10
+Time Elapsed 00:00:01.64
